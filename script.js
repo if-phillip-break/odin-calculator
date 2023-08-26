@@ -1,12 +1,32 @@
 let num1;
 let num2;
 let operator;
-let displayValue;
+
+let displayValue = document.querySelector('.display');
+let valueArr = [];
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        displayValue = button.id;
+        displayValue.textContent = button.textContent;
+        // switch (button.textContent){
+        //     case "+":
+        //         operator = button.textContent;
+        //         break;
+        //     case "-":
+        //         operator = button.textContent;
+        //         break;
+        //     case "*":
+        //         operator = button.textContent;
+        //         break;
+        //     case "/":
+        //         operator = button.textContent;
+        //         break;
+        //     case "=":
+        //         operator = button.textContent;
+        //          break;
+        // }
+        valueArr.push(button.textContent)
     });
 });
 
@@ -42,5 +62,5 @@ function operate(operator, num1, num2){
             res = divide(num1, num2);
             break;
     }
-    return res;
+    displayValue.textContent = res;
 }
