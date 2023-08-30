@@ -10,8 +10,12 @@ buttons.forEach((button) => {
     if (button.textContent === "Clear"){
         button.addEventListener('click', () => {
             displayValue.textContent = ""
+            num1 = "";
+            num2 = "";
+            operator = "";
+            num = "";
         });
-    } else if (button.textContent === "+" || button.textContent === "-" || button.textContent === "*" || button.textContent === "/" || button.textContent === "="){
+    } else if (button.textContent === "+" || button.textContent === "-" || button.textContent === "*" || button.textContent === "/"){
         button.addEventListener('click', () => {
             if (num1 === ""){
                 num1 = Number(num);
@@ -27,6 +31,15 @@ buttons.forEach((button) => {
                 num2 = "";
             }
             displayValue.textContent += button.textContent;
+        });
+    } else if (button.textContent === "="){
+        button.addEventListener('click', () => {
+            num2 = Number(num);
+            if (operator === "" || num1 === "" || num2 === ""){
+                displayValue.textContent = "Need numbers and operator";
+            } else {
+                displayValue.textContent = operate(operator, num1, num2);
+            }
         });
     } else {
         button.addEventListener('click', () => {
@@ -67,7 +80,7 @@ function operate(operator, num1, num2){
         case "/":
             if (num2 === 0){
                 displayValue.textContent = "Can't divide by 0";
-                return res;
+                return "Can't divide by 0";
             } else {
                 res = divide(num1, num2);
             }
